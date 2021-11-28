@@ -326,7 +326,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form id="submit-form" action="">
+                                <form id="submit-form">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6">
                                             <div class="form-box user-icon mb-25">
@@ -342,7 +342,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-6">
                                             <div class="form-box email-icon mb-25">
-                                                <input type="text" id="numph" name="Phone number" placeholder="Phone number" onkeyup="phonevalidate()">
+                                                <input type="text" id="numph" name="Phone number" maxlength="10" minlength="10" placeholder="Phone number" onkeyup="Phonevalidate()">
                                                 <span id="phfield" class="text-white" ></span>
                                             </div>
                                         </div>
@@ -351,7 +351,7 @@
                                                 <textarea name="message" id="message" placeholder="Message"></textarea>
                                             </div>
                                             <div class="submit-info">
-                                                <button class="submit-btn2" type="submit">Send Message</button>
+                                                <button class="submit-btn2" type="button" onclick="validate()">Send Message</button>
                                             </div>
                                         </div>
                                     </div>
@@ -468,6 +468,8 @@
                     return false
                 }
             }
+
+
             function Phonevalidate(){
                 var no= $('#numph').val();
                 var phPattern= /^\d{10}$/
@@ -486,31 +488,31 @@
                     return false
                 }
             }
-        if(emailvalidate()==true&&emailvalidate()==true){
 
-            $("#submit-form").submit((e)=>{
-            e.preventDefault()
+            function validate(){
+        if(namevalidate()==true && emailvalidate()==true && Phonevalidate()==true){
+
+           
             $.ajax({
                 url:"https://script.google.com/macros/s/AKfycbz-B_fVxypmLVNI3Fa5NrF3o1CmJe08IvGQ-dseLkvuowHE5S5rwNE_Y4nf9wAWWT8/exec",
                 data:$("#submit-form").serialize(),
                 method:"post",
                 success:function (response){
                     alert("Form submitted successfully")
-                    window.location.reload()
+                    //window.location.reload()
                     //window.location.href="https://google.com"
                 },
                 error:function (err){
                     alert("Something Error")
     
                 }
-            })
+            
         })
-        }
-        else{
-            alert("please enter the form correctly");
+        }else{
+            alert("samthing")
         }
 
-
+    }
     </script>
     
     </body>
